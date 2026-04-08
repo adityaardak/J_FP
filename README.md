@@ -13,7 +13,8 @@ DriveIQ is an intelligent reporting ecosystem designed to transform 14 years of 
      1. Executive Overview: High-level KPIs ($19.01T Total Revenue).
      2. Product Performance: Revenue contribution & model leadership.
      3. Regional Analysis: Developed vs. Developing nation market share.
-     4. Technology & Performance: Deep-dive into Fuel Type adoption & Transmission trends.
+     4. Customer Preference: Choices of the consumer and best combination to produce.
+     5. Technology & Performance: Deep-dive into Fuel Type adoption & Transmission trends.
 4. 95%+ Data Integrity: Advanced ETL pipeline built with Power Query.
 
 ## 🛠️ Tech Stack
@@ -33,6 +34,8 @@ DriveIQ is an intelligent reporting ecosystem designed to transform 14 years of 
 1. Volume vs. Value: The BMW 3 Series leads in sales volume, but the X5 SUV dominates revenue contribution (35%).
 2. Sustainability Surge: Hybrid and Electric vehicle adoption increased by 150% post-2020 in developed markets.
 3. Optimal Config: Data identifies Blue | Hybrid | Automatic as the most profitable combination for future production.
+
+## Screenshots
 
 ## 📁 Repository Structure
 ├── Data/                   # Cleaned Excel dataset
