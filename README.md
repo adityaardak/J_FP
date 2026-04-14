@@ -35,10 +35,8 @@ DriveIQ is an intelligent reporting ecosystem designed to transform 14 years of 
 2. Sustainability Surge: Hybrid and Electric vehicle adoption increased by 150% post-2020 in developed markets.
 3. Optimal Config: Data identifies Blue | Hybrid | Automatic as the most profitable combination for future production.
 
-## Screenshots
-1. Dasboard Screenshots []
-2. Agent Screenshots []
-3. Agent Testing Screenshots []
+## Demo Video 
+https://drive.google.com/file/d/1vihDQZb_--Zcu0eMIMl6MW2mWv-erdq-/view?usp=drivesdk
 
 ## 📁 Repository Structure
 ├── Data/                   # Cleaned Excel dataset
