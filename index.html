@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW Sales Intelligence Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="hero reveal">
+            <div class="hero-copy">
+                <div class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    Luxury Automotive Intelligence Portal
+                </div>
+                <h1>BMW Sales Intelligence Studio</h1>
+                <p>
+                    A premium intelligence environment for BMW demand, pricing, product mix, and regional
+                    performance. Power BI drives the strategic report layer while browser-side analytics add
+                    a richer executive cockpit around it.
+                </p>
+                <div class="hero-status">
+                    <div class="status-pill">
+                        <span class="status-label">Embedded Report</span>
+                        <strong id="active-report-label">Executive Overview</strong>
+                    </div>
+                    <div class="status-pill">
+                        <span class="status-label">Dataset Window</span>
+                        <strong>2010 - 2024</strong>
+                    </div>
+                    <div class="status-pill">
+                        <span class="status-label">Data Engine</span>
+                        <strong>SheetJS + Plotly.js</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-accent-card">
+                <span class="accent-chip">BMW Insight Grid</span>
+                <div class="accent-spec">
+                    <label>Performance Mode</label>
+                    <strong>Live Analytics</strong>
+                </div>
+                <div class="accent-spec">
+                    <label>Visual Language</label>
+                    <strong>Graphite / Silver / Electric Blue</strong>
+                </div>
+                <div class="accent-spec">
+                    <label>Control Layer</label>
+                    <strong>Custom Page Navigation</strong>
+                </div>
+            </div>
+        </header>
+
+        <section class="kpi-ribbon reveal" id="kpi-ribbon">
+            <article class="kpi-card">
+                <span>Total Revenue</span>
+                <strong id="kpi-revenue">--</strong>
+                <small>Aggregate revenue inside current filter scope</small>
+            </article>
+            <article class="kpi-card">
+                <span>Total Sales Volume</span>
+                <strong id="kpi-sales">--</strong>
+                <small>Total units represented in active selection</small>
+            </article>
+            <article class="kpi-card">
+                <span>Average Price</span>
+                <strong id="kpi-price">--</strong>
+                <small>Mean transaction value across filtered rows</small>
+            </article>
+            <article class="kpi-card">
+                <span>Top Model</span>
+                <strong id="kpi-model">--</strong>
+                <small>Highest revenue-driving BMW model</small>
+            </article>
+            <article class="kpi-card">
+                <span>Top Region</span>
+                <strong id="kpi-region">--</strong>
+                <small>Strongest regional market by revenue</small>
+            </article>
+        </section>
+
+        <main class="dashboard-grid">
+            <aside class="sidebar glass-panel reveal">
+                <div class="panel-heading">
+                    <span class="panel-kicker">Control Rail</span>
+                    <h2>Report Navigation</h2>
+                    <p>Switch Power BI pages and refine the live BMW data slice.</p>
+                </div>
+
+                <div class="page-switcher" id="page-switcher">
+                    <button class="page-button active" data-page-label="Executive Overview" data-page-id="ReportSection">Executive Overview</button>
+                    <button class="page-button" data-page-label="Product Performance" data-page-id="ReportSection1">Product Performance</button>
+                    <button class="page-button" data-page-label="Regional Market Analysis" data-page-id="ReportSection2">Regional Market Analysis</button>
+                    <button class="page-button" data-page-label="Customer Preference" data-page-id="ReportSection3">Customer Preference</button>
+                    <button class="page-button" data-page-label="Technology &amp; Performance" data-page-id="ReportSection4">Technology &amp; Performance</button>
+                </div>
+
+                <div class="filter-stack">
+                    <div class="filter-title-row">
+                        <span class="panel-kicker">Live Filters</span>
+                        <button id="reset-filters" class="ghost-button" type="button">Reset</button>
+                    </div>
+
+                    <label class="filter-group">
+                        <span>Model</span>
+                        <select id="filter-model" multiple></select>
+                    </label>
+
+                    <label class="filter-group">
+                        <span>Year</span>
+                        <select id="filter-year" multiple></select>
+                    </label>
+
+                    <label class="filter-group">
+                        <span>Region</span>
+                        <select id="filter-region" multiple></select>
+                    </label>
+
+                    <label class="filter-group">
+                        <span>Fuel Type</span>
+                        <select id="filter-fuel" multiple></select>
+                    </label>
+
+                    <label class="filter-group">
+                        <span>Transmission</span>
+                        <select id="filter-transmission" multiple></select>
+                    </label>
+
+                    <label class="filter-group">
+                        <span>Vehicle Type</span>
+                        <select id="filter-vehicle" multiple></select>
+                    </label>
+                </div>
+            </aside>
+
+            <section class="main-stage reveal">
+                <div class="dashboard-panel glass-panel">
+                    <div class="panel-topbar">
+                        <div>
+                            <span class="panel-kicker">Power BI Stage</span>
+                            <h2>Strategic Dashboard Embed</h2>
+                        </div>
+                        <div class="stage-meta">
+                            <span class="meta-chip" id="meta-records">0 records</span>
+                            <span class="meta-chip" id="meta-models">0 models</span>
+                            <span class="meta-chip" id="meta-regions">0 regions</span>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-frame-shell">
+                        <div class="dashboard-frame-chrome">
+                            <span class="chrome-dot blue"></span>
+                            <span class="chrome-dot silver"></span>
+                            <span class="chrome-dot red"></span>
+                            <span class="frame-title">BMW Executive Report</span>
+                        </div>
+                        <div class="dashboard-frame" id="powerbi-container">
+                            <iframe
+                                id="powerbi-frame"
+                                title="BMW Power BI Dashboard"
+                                src="https://app.powerbi.com/reportEmbed?reportId=3c2edaec-6fda-4c9c-8f1a-bd50ec405e6f&autoAuth=true&ctid=1490b17d-5dc9-4cbf-aeba-a2e854f521b8&navContentPaneEnabled=false&filterPaneEnabled=false&pageName=ReportSection"
+                                allowfullscreen="true"
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-footnote">
+                        Custom navigation controls the report page directly and keeps the embedded experience clean, balanced, and presentation-ready.
+                    </div>
+                </div>
+            </section>
+
+            <aside class="analytics-column reveal">
+                <section class="analytics-card glass-panel">
+                    <div class="card-topbar">
+                        <div>
+                            <span class="panel-kicker">Module 1</span>
+                            <h3>Model Performance Spotlight</h3>
+                        </div>
+                        <label class="inline-select">
+                            <span>Spotlight Model</span>
+                            <select id="spotlight-model"></select>
+                        </label>
+                    </div>
+
+                    <div class="detail-grid" id="spotlight-stats">
+                        <div class="detail-card">
+                            <span>Average Price</span>
+                            <strong id="spotlight-price">--</strong>
+                        </div>
+                        <div class="detail-card">
+                            <span>Total Sales</span>
+                            <strong id="spotlight-sales">--</strong>
+                        </div>
+                        <div class="detail-card">
+                            <span>Total Revenue</span>
+                            <strong id="spotlight-revenue">--</strong>
+                        </div>
+                        <div class="detail-card">
+                            <span>Mileage</span>
+                            <strong id="spotlight-mileage">--</strong>
+                        </div>
+                        <div class="detail-card">
+                            <span>Engine Size</span>
+                            <strong id="spotlight-engine">--</strong>
+                        </div>
+                        <div class="detail-card">
+                            <span>Fuel Type</span>
+                            <strong id="spotlight-fuel">--</strong>
+                        </div>
+                        <div class="detail-card">
+                            <span>Transmission</span>
+                            <strong id="spotlight-transmission">--</strong>
+                        </div>
+                        <div class="detail-card">
+                            <span>Vehicle Type</span>
+                            <strong id="spotlight-vehicle">--</strong>
+                        </div>
+                    </div>
+
+                    <div class="chart-shell">
+                        <div id="model-radar-chart" class="chart-canvas"></div>
+                    </div>
+                </section>
+
+                <section class="analytics-card glass-panel">
+                    <div class="card-topbar">
+                        <div>
+                            <span class="panel-kicker">Module 2</span>
+                            <h3>Regional Demand Pulse</h3>
+                        </div>
+                    </div>
+
+                    <div class="insight-strip">
+                        <div class="insight-pill">
+                            <span>Top Sales Region</span>
+                            <strong id="region-top-sales">--</strong>
+                        </div>
+                        <div class="insight-pill">
+                            <span>Top Revenue Region</span>
+                            <strong id="region-top-revenue">--</strong>
+                        </div>
+                        <div class="insight-pill">
+                            <span>Highest Pricing Region</span>
+                            <strong id="region-top-price">--</strong>
+                        </div>
+                    </div>
+
+                    <div class="chart-shell large">
+                        <div id="regional-bubble-chart" class="chart-canvas"></div>
+                    </div>
+                </section>
+
+                <section class="analytics-card glass-panel">
+                    <div class="card-topbar">
+                        <div>
+                            <span class="panel-kicker">Module 3</span>
+                            <h3>Product Mix Intelligence</h3>
+                        </div>
+                    </div>
+
+                    <div class="insight-strip">
+                        <div class="insight-pill">
+                            <span>Strongest Mix</span>
+                            <strong id="mix-strongest">--</strong>
+                        </div>
+                        <div class="insight-pill">
+                            <span>Best-Selling Vehicle</span>
+                            <strong id="mix-vehicle">--</strong>
+                        </div>
+                        <div class="insight-pill">
+                            <span>Preferred Transmission</span>
+                            <strong id="mix-transmission">--</strong>
+                        </div>
+                        <div class="insight-pill">
+                            <span>Strongest Fuel Type</span>
+                            <strong id="mix-fuel">--</strong>
+                        </div>
+                    </div>
+
+                    <div class="chart-shell">
+                        <div id="product-mix-chart" class="chart-canvas"></div>
+                    </div>
+                </section>
+            </aside>
+        </main>
+
+        <footer class="bottom-strip reveal">
+            <span id="footer-status">Loading BMW sales workbook...</span>
+            <span>Custom HTML / CSS / JavaScript build</span>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/powerbi-client/2.23.1/powerbi.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
